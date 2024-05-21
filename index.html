@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de login</title>
+</head>
+<body>
+    <div>
+        <h1>Login</h1>
+        <input type="text" placeholder="Nome">
+        <br><br>
+        <input type="password" placeholder="Senha">
+        <br><br>
+        <button>Enviar</button>
+    </div>
+    <!-- arquivo que o firebase disponibiliza em javascript (o campat no final seria um arquivo mais simplificado) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script> 
+    
+    <!-- // Esse link é um arquivo do firebase que disponibiliza em javascript a authenticação do usário -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    
+    <script>
+        // Essas são as configurações da projeto que criei no firebase e coloca no código para fazer comunicação
+        const firebaseConfig = {
+          apiKey: "AIzaSyAWbAzNEqW49Z150QbhDnCu1BLVAKNEP0o",
+          authDomain: "todolist-f72f9.firebaseapp.com",
+          projectId: "todolist-f72f9",
+          storageBucket: "todolist-f72f9.appspot.com",
+          messagingSenderId: "1069988830390",
+          appId: "1:1069988830390:web:a986389cf49055953c5a17"
+        };
+      
+        // Essa linha inicializa a pasta que criou no firebase 
+        firebase.initializeApp(firebaseConfig);
+
+        console.log('Antes de entrar na promisse')
+        // É tipo uma requisição (promisse) que vou enviar o email e senha e ele me retorna se deu certo ou não
+        //Promisse é tipo te prometo que vou te entregar algo e com isso faz o then para saber se deu certo ou cactch saber se deu ruim.
+        // Curiosidade: A promisse é te retorna o valor, mas não QUANDO vai entregar pode ser imediato ou 10 segundos depois.
+        firebase.auth().signInWithEmailAndPassword("any@gmail.com", "123456")
+        .then(response => {
+            console.log('certo', response);
+        })
+        .catch(response => {
+            console.log('erro', response)
+        })
+        console.log('Depoiss de entrar na promisse');
+      </script>
+</body>
+</html>
